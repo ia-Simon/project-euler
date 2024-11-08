@@ -8,7 +8,7 @@ func init() {
 
 func Problem1() string {
 	accum := 0
-	for i := range 10 {
+	for i := range 1000 {
 		switch {
 		case i%3 == 0:
 			accum += i
