@@ -9,44 +9,19 @@ func init() {
 }
 
 func Problem2() string {
-
-	// return strconv.Itoa(fib(42))
-	// return strconv.Itoa(tailFib(42))
-	return strconv.Itoa(memoize(fib)(42))
-}
-
-func fib(n int) int {
-	if n == 0 {
-		return 0
-	}
-
-	if n == 1 {
-		return 1
-	}
-
-	return fib(n-1) + fib(n-2)
-}
-
-func tailFib(n int) int {
-	last := 0
-	accum := 1
-	for range n - 1 {
-		last, accum = accum, last+accum
-	}
-
-	return accum
-}
-
-func memoize[In comparable, Out any](fn func(In) Out) func(In) Out {
-	cache := make(map[In]Out)
-
-	return func(in In) Out {
-		if out, ok := cache[in]; ok {
-			return out
+	minus2 := 0
+	minus1 := 1
+	accum := 0
+	for {
+		minus2, minus1 = minus1, minus2+minus1
+		if minus1 > 4_000_000 {
+			break
 		}
 
-		out := fn(in)
-		cache[in] = out
-		return out
+		if minus1%2 == 0 {
+			accum += minus1
+		}
 	}
+
+	return strconv.Itoa(accum)
 }
